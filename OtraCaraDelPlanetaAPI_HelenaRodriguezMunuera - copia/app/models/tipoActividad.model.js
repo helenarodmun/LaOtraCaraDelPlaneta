@@ -1,0 +1,17 @@
+module.exports = mongoose => {
+    var tipoActividadSchema = new mongoose.Schema(
+      {
+        nombre: String
+      },
+      { timestamps: true }
+    );
+  
+    tipoActividadSchema.method("toJSON", function() {
+      const { __v, _id, ...object } = this.toObject();
+      object.id = _id;
+      return object;
+    });
+  
+    const TipoActividad = mongoose.model('tipoactividades', tipoActividadSchema);
+    return TipoActividad;
+  };
